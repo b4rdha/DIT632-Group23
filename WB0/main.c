@@ -6,7 +6,10 @@
 /*
 ------------------------------------------------------------------
 A program using the GNU Compiler Collections(GCC) through provided
-arguments and error handling for the major possible cases.
+arguments and error handling for the major possible cases. 
+
+A simple progarm that alows the user to print out a "Hello world" example with their names. 
+In case of errors the program directs the user to get help and run the program correctly .  
 ------------------------------------------------------------------
 */
 
