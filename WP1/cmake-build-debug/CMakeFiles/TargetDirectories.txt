@@ -1,3 +1,0 @@
-/Users/bardhaahmeti/CLionProjects/WP1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/bardhaahmeti/CLionProjects/WP1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/bardhaahmeti/CLionProjects/WP1/cmake-build-debug/CMakeFiles/WP1.dir
