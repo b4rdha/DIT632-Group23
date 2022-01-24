@@ -34,19 +34,18 @@ int binaryToHec(char binary_array[]);
 
 
 //-----------------------------global variables------------------------------------
-static char conversion_failure [] = "Conversion failed! You have not entered a correct number argument. "
+static char conversion_failure [] = "\nConversion failed! You have not entered a correct number argument. "
                                     "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char argument_failure [] = "You might have not entered an argument or entered more than one argument. "
+static char argument_failure [] = "\nYou might have not entered an argument or entered more than one argument. "
                                   "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char conversion_interrupted [] = "Conversion interrupted due to non-binary value in your argument. "
+static char conversion_interrupted [] = "\nConversion interrupted due to non-binary value in your argument. "
                                     "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char help [] = "To be able to run the program >>> \nType:  './<<name of your executable file>>', "
-                      "a whitespace and \"<binary number (e.g 00001111)> \"the maximum value of "
-                      "type unsigned long\"\nlook at this example\" [i.e.= \"./filename <number>\" ], "
-                      "[on windows: \"filename.exe <number>\" ]\n";
+static char help [] = "\nTo be able to run the program >>> \nType:  './<<name of your executable file>>', "
+                      "a whitespace and \"<binary number (e.g 00001111)>\nlook at this example\" [i.e.= \"./filename 00001111\" ], "
+                      "[on windows: \"filename.exe 00001111\" ]\n";
 
 //-------------------------------------------------------------------------------------
 
