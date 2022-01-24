@@ -139,8 +139,8 @@ int main(int argc, char *argv[]){
 
 /*
 * Function which converts a decimal to binary.
-* to fibonacci for an n-th number
-* I use the function to demonstrate the concept of testing
+* takes as a first param decimal number to convert and another param bits
+* to determine the bits format if it's 8 bits, 16 bits or 32 bits
 * @param Num_to_convert - which decimal number to convert.
 * @param bits - how many bits we want to convert the number to.
 */
