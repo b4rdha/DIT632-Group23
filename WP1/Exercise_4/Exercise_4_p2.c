@@ -44,7 +44,7 @@ static char conversion_interrupted [] = "Conversion interrupted due to non-binar
                                     "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
 static char help [] = "To be able to run the program >>> \nType:  './<<name of your executable file>>', "
-                      "a whitespace and \"<valid number between (0 - 4294 967 295)> \"the maximum value of "
+                      "a whitespace and \"<binary number (e.g 00001111)> \"the maximum value of "
                       "type unsigned long\"\nlook at this example\" [i.e.= \"./filename <number>\" ], "
                       "[on windows: \"filename.exe <number>\" ]\n";
 
