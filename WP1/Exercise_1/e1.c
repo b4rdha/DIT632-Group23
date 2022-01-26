@@ -40,32 +40,44 @@ int main()
         // scanf("format", argument) function to read the input data from the console
         scanf("%d", &input);
 
-        // switch-case to address the input
-        switch (input)
+        // if-statement conditions to address the input to differantiate the sentences
+        if (input == 1)
         {
-
-        // each case to differantiate the sentences
-        case 1:
+            // Printing out a string to the console for the user
             printf("%s\n", joke_1);
-
-            // exit after the specific sentence for the case printed out
-            break;
-        case 2:
-            printf("%s\n", joke_2); // as in case-1's comment
-            break;                  // as in case-1's comment
-        case 3:
-            printf("%s\n", joke_3); // as in case-1's comment
-            break;                  // as in case-1's comment
-        case 4:
-            printf("%s\n", joke_4); // as in case-1's comment
-            break;                  // as in case-1's comment
-        case 5:
-            printf("%s\n", joke_5); // as in case-1's comment
-            break;                  // as in case-1's comment
-
-        // Ptinting out a string to the console for default case in case the user type out of range (1 to 5).
-        default:
+        }
+        // 2nd condition for sentence #2
+        else if (input == 2)
+        {
+            // Printing out a string to the console for the user
+            printf("%s\n", joke_2);
+        }
+        // 3nd condition for sentence #3
+        else if (input == 3)
+        {
+            // Printing out a string to the console for the user
+            printf("%s\n", joke_3);
+        }
+        // 4nd condition for sentence #4
+        else if (input == 4)
+        {
+            // Printing out a string to the console for the user
+            printf("%s\n", joke_4);
+        }
+        // 5nd condition for sentence #5
+        else if (input == 5)
+        {
+            // Printing out a string to the console for the user
+            printf("%s\n", joke_5);
+        }
+        // otherwise exit the program after printing out a string for the user 
+        else
+        {
+            // Printing out a string to the console.
             printf("%s", "\nThe number you have entered does not fall between 1 and 5! \nExiting the program.");
+
+            // In case of this condition exit the program
+            break;
         }
 
         // condition to keep the interval between 1 to 5
