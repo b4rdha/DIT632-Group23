@@ -29,10 +29,13 @@ int main()
                 message[i] = ch;
             }
                 //include lowercase letters
-            else if(ch >= 'a' && ch <= 'z'){//
+            else if (ch >= 'a' && ch <= 'z'){//
                 ch = ch - 'a';
                 ch = (ch + shift) % 26 + 'a';
                 message[i] = ch;
+            }
+            else{
+                return -1;
             }
         }
         printf("Your encrypted message is: %s \n", message, "\n");
