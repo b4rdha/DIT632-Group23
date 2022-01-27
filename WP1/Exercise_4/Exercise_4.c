@@ -56,7 +56,8 @@ int main(int argc, char *argv[]){
 
 
     // take the length of argv[1] array
-    int length = strlen(argv[1]);
+    ////size_t length = (long) ((&argv[1])[1] - argv[1]); //// wrong size TODO
+
 
     // check if we have no arguments given or if we have more than one argument given.
     if (argc <2 || argc > 2)
@@ -98,7 +99,7 @@ int main(int argc, char *argv[]){
     // If it's equal then we check for the next digit.
     // if so then the data type is Unsigned char which means binary format 8 bits
     //unsigned char      (0 - 255)                    = 8 bits.
-    if ( ( length >= 0 && length < 3 ) || (length <= 3 && (
+    if ( ( strlen(argv[1]) >= 0 && strlen(argv[1]) < 3 ) || (strlen(argv[1]) <= 3 && (
             ( (  (unsigned int) argv[1][0] - '0') < 2) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') <= 5) )
@@ -107,11 +108,12 @@ int main(int argc, char *argv[]){
             )
     {
 
-        // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", "this number ( ", argv[1], ")'s binary value is (8 bits)");
 
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 8);
+
+        // prompt a message with the number given and which binary format it will apply
+        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (8 bits)");
 
     }
 
@@ -122,7 +124,7 @@ int main(int argc, char *argv[]){
         // if so then the data type is Unsigned INT which means binary format 8 bits
         //unsigned short int (255 - 65 535)               = 16 bits.
 
-    else if ( (length >= 3 && length < 5)  || ( length <= 5 && (
+    else if ( (strlen(argv[1]) >= 3 && strlen(argv[1]) < 5)  || ( strlen(argv[1]) <= 5 && (
             ( (  (unsigned int) argv[1][0] - '0') < 6) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') < 5) ) ||
@@ -133,11 +135,11 @@ int main(int argc, char *argv[]){
             )
     {
 
-        // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", "this number ( ", argv[1], ")'s binary value is (16 bits)");
-
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 16);
+
+        // prompt a message with the number given and which binary format it will apply
+        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (16 bits)");
 
     }
 
@@ -147,7 +149,7 @@ int main(int argc, char *argv[]){
         // If it's equal then we check for the next digit.
         // if so then the data type is Unsigned Long which means binary format 8 bits
         //unsigned long int  (65 535 - 4294 967 295)      = 32 bits.
-    else if (  (length >= 5 && length < 10) || ( length <= 10 && (
+    else if (  (strlen(argv[1]) >= 5 && strlen(argv[1]) < 10) || ( strlen(argv[1]) <= 10 && (
             ( (  (unsigned int) argv[1][0] - '0') < 4) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') < 2) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') <= 2) && (( (unsigned int) argv[1][2] - '0') < 9) ) ||
@@ -163,11 +165,11 @@ int main(int argc, char *argv[]){
             )
     {
 
-        // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", "this number ( ", "argv", ")'s binary value is (32 bits)");
-
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 32);
+
+        // prompt a message with the number given and which binary format it will apply
+        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (32 bits)");
     }
 
         // if not any case of the previous ones then the number is higher than the allowed value which we won't accept and return 2 with error message
@@ -211,7 +213,7 @@ void decimalToBinary(char* toConvert [], int bits)
             // check if the result is equal to 1 for the value and also bitwise using the & operator.
             printf("%d", ( atoi((char* )toConvert) >> i & 1));
         }
-            // otherwise 32 bits
+            // otherwise, 32 bits
         else
         {
             // shifting the bits

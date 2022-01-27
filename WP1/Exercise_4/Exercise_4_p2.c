@@ -54,7 +54,7 @@ static char help [] = "To be able to run the program >>> \n- Type:  './<<name of
  * @param argv - array of strings with program arguments, idexed from 0
  * @returns - 0 if ok, positive integer if there is an error code
  */
-int main(int argc, char *argv[]){
+int main(int argc, char* argv[]){
 
     // check if we have no arguments given or if we have more than one argument given.
     if (argv[1] == NULL)
@@ -137,10 +137,12 @@ int binaryToHec(const unsigned char* binary_array, int length)
             if ((i % 4) == 3) {
 
                 // print out the long value x as a lX (long hexadecimal) value.
-                printf("%lX", strtol((const char *) bits_group, NULL, 2)); /// maybe fix the new line
+                printf("%lX", strtol((const char *) bits_group, NULL, 2));
             }
         }
     }
+    // message to inform what has been converted
+    printf("%s%s\n", " is the hexadecimal value for " , binary_array);
 
     // return 0 when a conversion is successful.
     return 0;
