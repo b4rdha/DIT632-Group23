@@ -28,7 +28,7 @@ In case of running the program with no arguments or wrong digit values, the prog
 
 
 //function declaration
-int binaryToHec(char binary_array[]);
+int binaryToHec(const unsigned char* binary_array, int length);
 
 
 
@@ -40,12 +40,10 @@ static char conversion_failure [] = "\nConversion failed! You have not entered a
 static char argument_failure [] = "\nYou might have not entered an argument or entered more than one argument. "
                                   "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char conversion_interrupted [] = "\nConversion interrupted due to non-binary value in your argument. "
-                                        "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
-
-static char help [] = "\nTo be able to run the program >>> \nType:  './<<name of your executable file>>', "
-                      "a whitespace and \"<binary number (e.g 00001111)>\nlook at this example\" [i.e.= \"./filename 00001111\" ], "
-                      "[on windows: \"filename.exe 00001111\" ]\n";
+static char help [] = "To be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
+                      "a whitespace and \"<binary number>\"""\n\tlook at this example\" [i.e.= \"./filename <00001111>\" ], "
+                      "[on windows: \"filename.exe <00001111>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
+                      "\t./thisFileName | tr \"\\n\" \"\\0\" | xargs -0 ./theOtherFileName\n";
 
 
 
@@ -59,7 +57,7 @@ static char help [] = "\nTo be able to run the program >>> \nType:  './<<name of
 int main(int argc, char *argv[]){
 
     // check if we have no arguments given or if we have more than one argument given.
-    if (argv[1] == NULL || argc > 2)
+    if (argv[1] == NULL)
     {
         // prompt to the user an argument failure message and guide to run the help command.
         printf("%s\n", argument_failure);
@@ -78,33 +76,29 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
+
+    // a char array to hold the binary values given
+    // this is made for the reason in case the file will be running in a pipeline
+    unsigned char bin_values [strlen(argv[1])]; //// need to take all the args after arg[0]
+
+    //char *strstr(const char *s1, const char *s2);
+
+
     // loop over the given argument
     for (int i = 0; i < strlen(argv[1]); ++i) {
 
         // loop over the argv[1] to get the binary values to be converted *extract just 1s or 0s.
-        if ((!isdigit(argv[1][i])) && (argv[1][i] == '0' || argv[1][i] == '1'))
+        if ((isdigit(argv[1][i])) && (argv[1][i] == '0' || argv[1][i] == '1'))
         {
-            // if any char is not a digit >> prompt to the user a conversion failure message and guide to run the help command.
-            printf ("%s\n", conversion_failure);
 
+            // copy the binary values in the bin_values array
+            bin_values [i] = argv[1][i];
 
-            ///// TODO: save the binary values
-            //char
-
-            // return 2 and exit the program.
-            return 2;
         }
     }
 
-    // run the conversion and check if we have any digit that is not binary
-    // in case of non-binary digits the binaryToHec function will return 2, then we end the process here with code 2 also and
-    // binaryToHec method will also prompt a conversion_interrupted message to the user and to run the help command.
-    if (binaryToHec(argv[1]) == 2)
-    {
-
-        // return 2 and end the process.
-        return 2;
-    }
+    // Use the helper method binaryToHec to convert the binary number "char array"
+    binaryToHec(bin_values, strlen(argv[1]));
 
     // else return 0 if successful and exit the program
     return 0;
@@ -118,47 +112,35 @@ int main(int argc, char *argv[]){
 * to hexadecimal value
 * @param binary_array - array holding the binary digits to convert.
 */
-int binaryToHec(char binary_array[])
+int binaryToHec(const unsigned char* binary_array, int length)
 {
     // create array to divide and group the given binary_array to smaller groups of 4 bits.
-    char bits_group [4];
+    unsigned char bits_group [4];
+
+
+
+    // in case of successful conversion this message will be coming after the hexadecimal value.
+    //printf("%s\n" , "The hexadecimal value is ");
+
 
     // loop over the given binary_array till last index
-    for (int i = 0; i <= strlen(binary_array )- 1; i++)
+    for (int i = 0; i < length ; i++)
     {
-        // if each binary bit in the given binary_array is a binary digit or not
+        //check if the digits are binaries
         if (binary_array[i] == '1' || binary_array[i] == '0'){
 
-            // if it's binary digit then push it to the bits_group array of 4 bits
+            // push 4 bits groups into bits_group array
             // using the module operator to push it in the right index.
             bits_group[i % 4] = binary_array[i];
 
-
             // checks if we have already a group of 4 bits
-            if ((i % 4) == 3){
-
-                //  convert the digits in bits_group array to long type suing strol function
-                //  the string
-                // of chars created in bits_group array.
-                unsigned long x = strtol(bits_group, NULL, 2);
+            if ((i % 4) == 3) {
 
                 // print out the long value x as a lX (long hexadecimal) value.
-                printf ("%lX", x);
+                printf("%lX", strtol((const char *) bits_group, NULL, 2)); /// maybe fix the new line
             }
         }
-        else
-        {
-            // in case of a non-binary digit in the given binary_array, prompt to the user a conversion_interrupted message
-            // and guide to help command
-            printf ("\n%s\n", conversion_interrupted);
-
-            // return 2 to exit the function
-            return 2;
-        }
     }
-
-    // in case of successful conversion this message will be coming after the hexadecimal value.
-    printf("%s%s%s\n" , " is the (", binary_array, ")'s hexadecimal value.");
 
     // return 0 when a conversion is successful.
     return 0;

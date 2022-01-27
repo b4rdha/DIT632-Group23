@@ -215,7 +215,7 @@ void decimalToBinary(char* toConvert [], int bits)
         else
         {
             // shifting the bits
-            printf("%lu", (strtol(( char *) toConvert, NULL, 10) >> i & 1));
+            printf("%lu\n", (strtol(( char *) toConvert, NULL, 10) >> i & 1));
         }
     }
 }
