@@ -1,7 +1,8 @@
 // (C) Bassam Group: 23 (2022)
 // Work package 1
 // Exercise 4 part 1 (Decimal to Binary convertor)
-// Submission code: TODO
+// Submission code: TODO :: MAke sure that the program shal be running on wondows with the pipleline commands
+//TODO: complete the help documentation and maybe compile the executable files for windows.
 // run in a pipeline on MAC >> ./file | xargs ./nextfile
 // with spaces and \ to avoid ./main | tr "\n" "\0" | xargs -0 ./file on macos.
 //
@@ -31,13 +32,13 @@ void decimalToBinary(char* toConvert [], int bits);
 
 
 // global variables
-static char conversion_failure [] = "Conversion failed! You have not entered a correct number argument. "
+static char conversion_failure [] = "\nConversion failed! You have not entered a correct number argument. "
                                     "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char argument_failure [] = "You might have not entered an argument or entered more than one argument. "
+static char argument_failure [] = "\nYou might have not entered an argument or entered more than one argument. "
                                   "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char help [] = "To be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
+static char help [] = "\nTo be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
                       "a whitespace and \"<valid number between (0 - 4294 967 295)> \"the maximum value of "
                       "type unsigned long\"\n\tlook at this example\" [i.e.= \"./filename <number>\" ], "
                       "[on windows: \"filename.exe <number>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
@@ -55,12 +56,8 @@ static char help [] = "To be able to run the program >>> \n- Type:  './<<name of
 int main(int argc, char *argv[]){
 
 
-    // take the length of argv[1] array
-    ////size_t length = (long) ((&argv[1])[1] - argv[1]); //// wrong size TODO
-
-
     // check if we have no arguments given or if we have more than one argument given.
-    if (argc <2 || argc > 2)
+    if (argv[1] == NULL || argc > 2)
     {
         // prompt to the user an argument failure message and guide to run the help command.
         printf("%s\n", argument_failure);
@@ -69,6 +66,13 @@ int main(int argc, char *argv[]){
         return 2;
     }
 
+    // get the length of argv[1]
+    int length = 0;
+
+    //loop over the argument till we reach the null sign.
+    while (argv[1][length] != '\0'){
+        length ++;
+    }
 
     // check if the given argument -h which means help.
     if (strcmp(argv[1], "-h") == 0)
@@ -81,7 +85,7 @@ int main(int argc, char *argv[]){
     }
 
     // loop over the given argument to check if each char is a digit and find an appropriate data type.
-    for (int i = 0; i < strlen(argv[1]); ++i) {
+    for (int i = 0; i < length; ++i) {
 
         // check if any char in the argument is not a digit
         if (!isdigit(argv[1][i]))
@@ -99,7 +103,7 @@ int main(int argc, char *argv[]){
     // If it's equal then we check for the next digit.
     // if so then the data type is Unsigned char which means binary format 8 bits
     //unsigned char      (0 - 255)                    = 8 bits.
-    if ( ( strlen(argv[1]) >= 0 && strlen(argv[1]) < 3 ) || (strlen(argv[1]) <= 3 && (
+    if ( ( length >= 0 && length < 3 ) || (length <= 3 && (
             ( (  (unsigned int) argv[1][0] - '0') < 2) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') <= 5) )
@@ -113,7 +117,7 @@ int main(int argc, char *argv[]){
         decimalToBinary((char **) argv[1], 8);
 
         // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (8 bits)");
+        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (8 bits)");
 
     }
 
@@ -124,7 +128,7 @@ int main(int argc, char *argv[]){
         // if so then the data type is Unsigned INT which means binary format 8 bits
         //unsigned short int (255 - 65 535)               = 16 bits.
 
-    else if ( (strlen(argv[1]) >= 3 && strlen(argv[1]) < 5)  || ( strlen(argv[1]) <= 5 && (
+    else if ( (length >= 3 && length < 5)  || ( length <= 5 && (
             ( (  (unsigned int) argv[1][0] - '0') < 6) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') < 5) ) ||
@@ -139,7 +143,7 @@ int main(int argc, char *argv[]){
         decimalToBinary((char **) argv[1], 16);
 
         // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (16 bits)");
+        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (16 bits)");
 
     }
 
@@ -149,7 +153,7 @@ int main(int argc, char *argv[]){
         // If it's equal then we check for the next digit.
         // if so then the data type is Unsigned Long which means binary format 8 bits
         //unsigned long int  (65 535 - 4294 967 295)      = 32 bits.
-    else if (  (strlen(argv[1]) >= 5 && strlen(argv[1]) < 10) || ( strlen(argv[1]) <= 10 && (
+    else if (  (length >= 5 && length < 10) || ( length <= 10 && (
             ( (  (unsigned int) argv[1][0] - '0') < 4) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') < 2) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') <= 2) && (( (unsigned int) argv[1][2] - '0') < 9) ) ||
@@ -169,7 +173,7 @@ int main(int argc, char *argv[]){
         decimalToBinary((char **) argv[1], 32);
 
         // prompt a message with the number given and which binary format it will apply
-        printf("%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (32 bits)");
+        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (32 bits)");
     }
 
         // if not any case of the previous ones then the number is higher than the allowed value which we won't accept and return 2 with error message
@@ -187,7 +191,6 @@ int main(int argc, char *argv[]){
     // return 0 if successful and exit the program
     return 0;
 }
-
 
 
 

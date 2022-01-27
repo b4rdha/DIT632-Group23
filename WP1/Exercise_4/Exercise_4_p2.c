@@ -3,6 +3,8 @@
 // Exercise 4 part 2 (Binary to Hexadecimal convertor)
 // Submission code: TODO
 // TODO: ask if we need to check if the binary value is higher than long type value!!
+// TODO: This program shall run in a pipeline that means we can't disallow any type of argument or the number of arguments
+// TODO: but we need to ask the
 
 /*
 ------------------------------------------------------------------
@@ -18,29 +20,28 @@ In case of running the program with no arguments or wrong digit values, the prog
 */
 
 
-//-----------------------------Included libraries------------------------------------
+//Included libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-//-------------------------------------------------------------------------------------
 
 
 
 //function declaration
-int binaryToHec(const unsigned char* binary_array, int length);
+int binaryToHec( const char binary_array[], int length);
 
 
 
 
 //global variables
-static char conversion_failure [] = "\nConversion failed! You have not entered a correct number argument. "
+static char conversion_failure [] = "\nConversion failed! You have not entered a correct number argument. \n- Your arguments must start with binary number at least 4 bits "
                                     "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
 static char argument_failure [] = "\nYou might have not entered an argument or entered more than one argument. "
                                   "Type: \"./filename -h\" for help![on windows: \"filename.exe -h\"]";
 
-static char help [] = "To be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
+static char help [] = "\nTo be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
                       "a whitespace and \"<binary number>\"""\n\tlook at this example\" [i.e.= \"./filename <00001111>\" ], "
                       "[on windows: \"filename.exe <00001111>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
                       "\t./thisFileName | tr \"\\n\" \"\\0\" | xargs -0 ./theOtherFileName\n";
@@ -76,33 +77,49 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
+    //// TODO:: put here the other if statements later
+    // get the length of argv[1]
+    int length = 0;
+
+    //loop over the argument till we reach the null sign.
+    while (argv[1][length] != '\0'){
+        length ++;
+    }
 
     // a char array to hold the binary values given
     // this is made for the reason in case the file will be running in a pipeline
-    unsigned char bin_values [strlen(argv[1])]; //// need to take all the args after arg[0]
-
-    //char *strstr(const char *s1, const char *s2);
+     char bin_values [length];
 
 
     // loop over the given argument
-    for (int i = 0; i < strlen(argv[1]); ++i) {
+    for (int i = 0; i < length; ++i) {
 
         // loop over the argv[1] to get the binary values to be converted *extract just 1s or 0s.
-        if ((isdigit(argv[1][i])) && (argv[1][i] == '0' || argv[1][i] == '1'))
+        if (!(isdigit(argv[1][i])) && !(argv[1][i] == '0' || argv[1][i] == '1'))
         {
 
-            // copy the binary values in the bin_values array
-            bin_values [i] = argv[1][i];
+            // if any char is not a digit >> prompt to the user a conversion failure message and guide to run the help command.
+            printf ("%s\n", conversion_failure);
 
+            // failure, return 2 and exit the program.
+            return 2;
+
+        }
+        else
+        {
+            // copy the binary values in the bin_values array
+            bin_values [i] =  argv[1][i];
         }
     }
 
     // Use the helper method binaryToHec to convert the binary number "char array"
-    binaryToHec(bin_values, strlen(argv[1]));
+    binaryToHec(bin_values, length);
 
     // else return 0 if successful and exit the program
     return 0;
 }
+
+
 
 
 
@@ -112,38 +129,27 @@ int main(int argc, char* argv[]){
 * to hexadecimal value
 * @param binary_array - array holding the binary digits to convert.
 */
-int binaryToHec(const unsigned char* binary_array, int length)
-{
+
+int binaryToHec(const char binary_array[], int length) {
+
     // create array to divide and group the given binary_array to smaller groups of 4 bits.
-    unsigned char bits_group [4];
-
-
-
-    // in case of successful conversion this message will be coming after the hexadecimal value.
-    //printf("%s\n" , "The hexadecimal value is ");
-
+    char bits_group[4];
 
     // loop over the given binary_array till last index
-    for (int i = 0; i < length ; i++)
-    {
-        //check if the digits are binaries
-        if (binary_array[i] == '1' || binary_array[i] == '0'){
+    for (int i = 0; i < length; i++) {
 
-            // push 4 bits groups into bits_group array
+            // if it's binary digit then push it to the bits_group array of 4 bits
             // using the module operator to push it in the right index.
             bits_group[i % 4] = binary_array[i];
 
-            // checks if we have already a group of 4 bits
+            // checks if we have already a group of 4 bits using the module operator
             if ((i % 4) == 3) {
 
-                // print out the long value x as a lX (long hexadecimal) value.
-                printf("%lX", strtol((const char *) bits_group, NULL, 2));
+                // print out the long value x as a lX hexadecimal value using strol method.
+                // passing the bits_group array
+                printf("%lX", strtol(bits_group, NULL, 2));
             }
-        }
     }
-    // message to inform what has been converted
-    printf("%s%s\n", " is the hexadecimal value for " , binary_array);
-
-    // return 0 when a conversion is successful.
+    printf("%s\n", " is the hexadecimal value for the number you have entered");
     return 0;
 }
