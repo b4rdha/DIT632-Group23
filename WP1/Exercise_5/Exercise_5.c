@@ -6,12 +6,12 @@
 /*------------------------------------------------------------
 References:
 
-/*------------------------------------------------------------
+*------------------------------------------------------------
 Exercise 5
 
 The system.........bla bla
 
---------------------------------------------------------------*/
+//--------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,185 +49,64 @@ int create_random(int *tab)
 
 int count_frequency(int *tab, int *freq)
 {
-    // int i, j, count;
-    // int visited = -1;
-    // int size = tab;
 
-    // for (i = 0; i < tab; i++)
-    // {
-    //     count = 1;
-    //     for (j = i + 1; j < tab; j++)
-    //     {
-    //         if (tab[i] == tab[j])
-    //         {
-    //             count++;
-    //             freq[j] = visited;
-    //         }
-    //     }
+    //int c[6];
 
-    //     if (freq[i] != visited)
-    //     {
-    //         freq[i] = count;
-    //     }
-    // }
+    // set the array to 0s to clean up
+    for (int i = 0; i < MAXNUMBER; ++i) {
+        freq[i] = 0;
+        printf("%d " , freq[i]);
+    }
 
-    // printf("\nThe frequency of all elements of array = \n");
-    // for (int i = 0; i < tab; i++)
-    // {
-    //     if (freq[i] != visited)
-    //     {
-    //         printf("%d occurs %d times\n", tab[i], freq[i]);
-    //     }
-    // }
+    printf("\n%s" , "\n");
 
-    // return 0;
-
-    int arr[10] = {3, 3, 4, 1, 1, 3, 3, 4, 0, 0};
-
-    int c[6];
-
-    int i;
     int *ptr;
-    ptr = arr;
+    ptr = tab;
 
-    for (i = 0; i < 10; i++)
+    for (int i = 0; i < MAX; i++)
     {
-        // (arr + i) = &freq[p]++;
-        // freq[*ptr];
-        // printf("%d-%d-%d\n", *ptr, freq[tab[i]], freq[*ptr++]);
+
+        freq[*ptr % MAXNUMBER] ++;
+        printf("%d ", *ptr);
         ptr++;
 
-        if (*ptr == 0)
-        {
-            arr[0]++;
-        }
-        else if (*ptr == 1)
-        {
-            arr[1]++;
-        }
-        else if (*ptr == 2)
-        {
-            arr[2]++;
-        }
-        else if (*ptr == 3)
-        {
-            arr[3]++;
-        }
-        else if (*ptr == 4)
-        {
-            arr[4]++;
-        }
-        else if (*ptr == 5)
-        {
-            arr[5]++;
-        }
-        else if (*ptr == 6)
-        {
-            arr[6]++;
-        }
-        else if (*ptr == 7)
-        {
-            arr[7]++;
-        }
-        else if (*ptr == 8)
-        {
-            arr[8]++;
-        }
-        else if (*ptr == 9)
-        {
-            arr[9]++;
-        }
-        else if (*ptr == 10)
-        {
-            arr[10]++;
-        }
-        else if (*ptr == 11)
-        {
-            arr[11]++;
-        }
-        else if (*ptr == 12)
-        {
-            arr[12]++;
-        }
-        else if (*ptr == 13)
-        {
-            arr[13]++;
-        }
-        else if (*ptr == 14)
-        {
-            arr[14]++;
-        }
-        else if (*ptr == 15)
-        {
-            arr[15]++;
-        }
-        else if (*ptr == 16)
-        {
-            arr[16]++;
-        }
-        else if (*ptr == 17)
-        {
-            arr[17]++;
-        }
-        else if (*ptr == 18)
-        {
-            arr[18]++;
-        }
-        else if (*ptr == 19)
-        {
-            arr[19]++;
-        }else{
-
-        }
-
     }
-    for ( i = 0; i < MAXNUMBER; i++)
+
+    printf("\n%s\n" , "result");
+
+    // print
+    for ( int i = 0; i < MAXNUMBER; i++)
     {
-        printf("%d-%d\n", i, arr[i]);
+        printf("%d-  \t%d\n", i, freq[i]);
     }
-    
 
-    // int i, j;
-    // int table[MAX], n;
-    // int frequency[MAXNUMBER];
 
-    // // Dividing int data into bins
-    // for (i = 0; i < tab; i++)
-    // {
-    //     for (j = 1; j <= freq; j++)
-    //     {
-
-    //         int bin_max = j / *freq;
-    //         if (frequency[i] <= bin_max)
-    //         {
-    //             table[j]++;
-    //             break;
-    //         }
-    //     }
-    // }
+    return  0;
 }
 
-/*int draw_histogram(int *freq)
-{
-    int count;
-    int i, j;
-    int table[MAX];
-    int frequency[MAXNUMBER];
-    // Plotting histogram
-    printf("\nHistogram of int data\n");
 
-    for (i = 1; i <= freq; i++)
-    {
-        count = table[i];
-        printf("%d |", i - 1);
-        for (j = 0; j < count; j++)
-        {
-            printf("%c", (char)88);
-        }
-        printf("\n");
-    }
-    return *freq;
-} */
+//
+//int draw_histogram(int *freq)
+//{
+//    int count;
+//    int i, j;
+//    int table[MAX];
+//    int frequency[MAXNUMBER];
+//    // Plotting histogram
+//    printf("\nHistogram of int data\n");
+//
+//    for (i = 1; i <= freq; i++)
+//    {
+//        count = table[i];
+//        printf("%d |", i - 1);
+//        for (j = 0; j < count; j++)
+//        {
+//            printf("%c", (char)88);
+//        }
+//        printf("\n");
+//    }
+//    return *freq;
+//}
 
 // ------ Function definitions ----------
 // ------ Main --------------------------
