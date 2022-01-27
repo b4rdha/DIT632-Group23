@@ -47,66 +47,90 @@ int create_random(int *tab)
     return 0;
 }
 
+
+/**
+* Function takes the *tab of random numbers
+* and stores the number of the appearance of each number in the tab array
+* The function takes as an input 2 params
+* @param *tab - array of random numbers numbers.
+* @param *freq - where we store the counts for each number appearance in the tab array.
+*/
+
 int count_frequency(int *tab, int *freq)
 {
 
-    //int c[6];
-
-    // set the array to 0s to clean up
+    // loop over to reset and set the frequency array to 0s to clean up from the RAM garbage values.
     for (int i = 0; i < MAXNUMBER; ++i) {
+        // set each index to 0
         freq[i] = 0;
-        printf("%d " , freq[i]);
     }
 
-    printf("\n%s" , "\n");
+    // use pointer to point at the tab array
+    int *tab_ptr;
+    // Assign the pointer address to the tab array address in the memory
+    tab_ptr = tab;
 
-    int *ptr;
-    ptr = tab;
-
+    // loop over the length of the tab array
     for (int i = 0; i < MAX; i++)
     {
 
-        freq[*ptr % MAXNUMBER] ++;
-        printf("%d ", *ptr);
-        ptr++;
+        // as the frequency array is already indexed and sequential >>
+        // use the index of the array as a key to store the occurrence of these numbers.
+        // Example - value of tab[i] = 5 then go to index 5 in freq[] and add 1 (found one time)
+        // with each loop, the index for this number is incremented if it's found again.
+        // module operator is used to find the right index as i will grow higher than MAXNUMBER
+        freq[*tab_ptr % MAXNUMBER] ++;
 
+        // increment the tab_pointer to go to next int address
+        tab_ptr++;
     }
-
-    printf("\n%s\n" , "result");
-
-    // print
-    for ( int i = 0; i < MAXNUMBER; i++)
-    {
-        printf("%d-  \t%d\n", i, freq[i]);
-    }
-
-
     return  0;
 }
 
 
-//
-//int draw_histogram(int *freq)
-//{
-//    int count;
-//    int i, j;
-//    int table[MAX];
-//    int frequency[MAXNUMBER];
-//    // Plotting histogram
-//    printf("\nHistogram of int data\n");
-//
-//    for (i = 1; i <= freq; i++)
-//    {
-//        count = table[i];
-//        printf("%d |", i - 1);
-//        for (j = 0; j < count; j++)
-//        {
-//            printf("%c", (char)88);
-//        }
-//        printf("\n");
-//    }
-//    return *freq;
-//}
+/**
+* Function takes the *freq  of counts of how many times a number has appeared in an array
+* This function will draw a histogram of the statistics the *freq holds.
+* The function takes as an input 1 params
+* @param *freq - array of counts of the appearance of numbers in an array.
+*/
+
+int draw_histogram(int *freq)
+{
+
+    // Plotting the histogram
+    // the idea is adopted from https://stackoverflow.com/questions/18930908/c-printing-a-histogram
+    printf("\n\t >>>>>> A histogram for the frequency of each number in an array <<<<<<<\n\n");
+
+    // initial int i to hold the index value
+    int i = 0;
+        do
+        {
+            // prints the index number with tab afterwards
+            printf("%d|\t",i);
+
+            // if the value of the freq[index] is 0 --> no occurrence for this number
+            // otherwise we draw the starts of how many times is the value
+            if (freq[i] != 0) {
+
+            // loop many times as the value of the freq[i].
+            for(int j = 0; j < freq[i]; j++)
+
+                // draw a star char
+                printf("%c",'*');
+                // start a new line
+                printf("\n");
+            }
+            // increment the i to go to the next index of *freq
+            i++;
+        // repeat the process for the length of the *freq
+        } while(i < MAXNUMBER);
+
+        // return 0 if successful
+    return 0;
+}
+
+
 
 // ------ Function definitions ----------
 // ------ Main --------------------------
@@ -122,16 +146,10 @@ int main(void)
 
     create_random(table);
     count_frequency(table, frequency);
+    draw_histogram(frequency);
 
-    // for (int i = 0; i < MAXNUMBER; i++)
-    // {
-    //     printf("%d\n", frequency[i]);
-    // }
-
-    // printf("%d\n", sizeof(table) / sizeof(table[0]));
-
-    /*     n = draw_histogram(MAXNUMBER);
-        printf("%d", n); */
 
     return 0;
 }
+
+
