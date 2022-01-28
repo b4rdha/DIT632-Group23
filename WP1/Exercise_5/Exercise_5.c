@@ -5,18 +5,22 @@
 
 /*------------------------------------------------------------
 References:
-
+ - https://stackoverflow.com/questions/18930908/c-printing-a-histogram
 *------------------------------------------------------------
 Exercise 5
 
-The system.........bla bla
+The system is generating 100 random numbers between 0 to 20 and 
+printing out the fequency of those numbers which is generated through 
+histogram. 
 
 //--------------------------------------------------------------*/
 
+// Used library headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+// Definition of Macros
 #define MAX 100      // Defines the maximum number of the values in the table
 #define MAXNUMBER 20 // Defines the maximum value of random numbers
 
@@ -33,17 +37,32 @@ int count_frequency(int *tab, int *freq);
 // and draws a histogram of the values in that frequency table
 int draw_histogram(int *freq);
 
+
+
+/**
+* The function create the random numbers and store them in *tab.
+* The function takes only a param as below;
+* @param *tab - array of random numbers numbers.
+*/
 int create_random(int *tab)
 {
-    int index = 0;
+
+    int index = 0; // Decleration of the variable
+
+    /* time(value) returns a time value every time srand() function call which sets
+    the starting point to produce continous random numbers in each execution.
+    srand() should be only seeded once prior to rand() or execution of the program.*/
     srand(time(0));
 
+    // Loop for the generating numbers for each execution between 0 to 20.
     while (index < MAX)
     {
-        int randomNumber = rand() % MAXNUMBER;
-        tab[index] = randomNumber;
-        index++;
+        int randomNumber = rand() % MAXNUMBER; // Random numbers are created and stored in the variable.
+        tab[index] = randomNumber; // Random numbers assigned to *tab
+        index++; // Incrementing index for each round.
     }
+
+    // Succesgul termination.
     return 0;
 }
 

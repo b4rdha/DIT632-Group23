@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
 
     // a char array to hold the binary values given
     // this is made for the reason in case the file will be running in a pipeline
-     char bin_values [length];
+     char bin_values [32];
 
 
     // loop over the given argument
