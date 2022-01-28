@@ -70,6 +70,7 @@ int count_frequency(int *tab, int *freq)
     // Assign the pointer address to the tab array address in the memory
     tab_ptr = tab;
 
+
     // loop over the length of the tab array
     for (int i = 0; i < MAX; i++)
     {
@@ -83,7 +84,17 @@ int count_frequency(int *tab, int *freq)
 
         // increment the tab_pointer to go to next int address
         tab_ptr++;
+
     }
+
+    // print out the frequency array with index and each value
+    printf("\b%s\n", "Frequency array >>>>>>>");
+    for ( int i = 0; i < MAXNUMBER; i++)
+    {
+        printf("%d- %s %d%s\n", i," occurred ", freq[i], " times.");
+    }
+
+    //
     return  0;
 }
 
@@ -100,28 +111,28 @@ int draw_histogram(int *freq)
 
     // Plotting the histogram
     // the idea is adopted from https://stackoverflow.com/questions/18930908/c-printing-a-histogram
-    printf("\n\t >>>>>> A histogram for the frequency of each number in an array <<<<<<<\n\n");
+    printf("%s",  "\n\t >>>>>> A histogram for the frequency of each number in an array <<<<<<<\n\n");
 
     // initial int i to hold the index value
     int i = 0;
         do
         {
-            // prints the index number with tab afterwards
-            printf("%d|\t",i);
 
             // if the value of the freq[index] is 0 --> no occurrence for this number
             // otherwise we draw the starts of how many times is the value
             if (freq[i] != 0) {
+                // prints the index number with tab afterwards
+                printf("%d|\t",i);
 
-            // loop many times as the value of the freq[i].
-            for(int j = 0; j < freq[i]; j++)
+                // loop many times as the value of the freq[i].
+                for(int j = 0; j < freq[i]; j++)
 
-                // draw a star char
-                printf("%c",'*');
-                // start a new line
-                printf("\n");
+                    // draw a star char
+                    printf("%c",'*');
+                    // start a new line
+                    printf("\n");
             }
-            // increment the i to go to the next index of *freq
+                // increment the i to go to the next index of *freq
             i++;
         // repeat the process for the length of the *freq
         } while(i < MAXNUMBER);
