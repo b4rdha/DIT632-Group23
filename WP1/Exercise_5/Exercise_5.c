@@ -10,8 +10,8 @@ References:
 --------------------------------------------------------------
 Exercise 5
 
-The system is generating 100 random numbers between 0 to 20 and 
-printing out the fequency of those numbers which is generated through 
+The system is generating 100 random numbers between 0 and 20 and
+printing out the frequency of those numbers which is generated through
 histogram. 
 -------------------------------------------------------------*/
 
@@ -46,7 +46,7 @@ int draw_histogram(int *freq);
 int create_random(int *tab)
 {
 
-    int index = 0; // Decleration of the variable
+    int index = 0; // Declaration of the variable index to hold the index *tab
 
     /* time(value) returns a time value every time srand() function call which sets
     the starting point to produce continous random numbers in each execution.
@@ -61,7 +61,7 @@ int create_random(int *tab)
         index++; // Incrementing index for each round.
     }
 
-    // Succesgul termination.
+    // Successful termination.
     return 0;
 }
 
@@ -174,7 +174,7 @@ int main(void)
     count_frequency(table, frequency);
     draw_histogram(frequency);
 
-    // Successfull termination
+    // Successfully termination
     return 0;
 }
 

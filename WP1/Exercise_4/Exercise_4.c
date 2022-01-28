@@ -1,17 +1,10 @@
 // (C) Bassam Group: 23 (2022)
 // Work package 1
 // Exercise 4 part 1 (Decimal to Binary convertor)
-// Submission code: aB-5311 
-
-// TODO :: MAke sure that the program shal be running on wondows with the pipleline commands
-//TODO: complete the help documentation and maybe compile the executable files for windows.
-// run in a pipeline on MAC >> ./file | xargs ./nextfile
-// with spaces and \ to avoid ./main | tr "\n" "\0" | xargs -0 ./file on macos.
+// Submission code: aB-5311
 //
 /*
 ------------------------------------------------------------------
-A program using the GNU Compiler Collections(GCC) through provided
-arguments and error handling for the major possible cases.
 The program takes a decimal input to convert to binary format.
 It takes a maximum value for unsigned long type (from 0 to 4294 967 295) and convert to binary format as follows:
     unsigned long int  (65 535 - 4294 967 295)      = 32 bits.
@@ -30,7 +23,12 @@ In case of running the program with no arguments or wrong digit values, the prog
 
 
 // function declaration
+
+//Function which converts a decimal to binary.
+//takes as a first param decimal number to convert and another param bits
+//to determine the bits format if it's 8 bits, 16 bits or 32 bits
 void decimalToBinary(char* toConvert [], int bits);
+
 
 
 // global variables
@@ -44,7 +42,7 @@ static char help [] = "\nTo be able to run the program >>> \n- Type:  './<<name 
                       "a whitespace and \"<valid number between (0 - 4294 967 295)> \"the maximum value of "
                       "type unsigned long\"\n\tlook at this example\" [i.e.= \"./filename <number>\" ], "
                       "[on windows: \"filename.exe <number>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
-                      "\t./thisFileName | tr \"\\n\" \"\\0\" | xargs -0 ./theOtherFileName";
+                      "\t./thisFileName <12> | xargs ./theOtherFileName";
 
 
 
@@ -109,18 +107,12 @@ int main(int argc, char *argv[]){
             ( (  (unsigned int) argv[1][0] - '0') < 2) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') < 3) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') <= 5) )
-    )
-    )
+            )
+            )
             )
     {
-
-
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 8);
-
-        // prompt a message with the number given and which binary format it will apply
-        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (8 bits)");
-
     }
 
         // else if
@@ -136,17 +128,12 @@ int main(int argc, char *argv[]){
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') < 5) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') <= 5) && (( (unsigned int) argv[1][3] - '0') < 3) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 6) && (( (unsigned int) argv[1][1] - '0') <= 5) && (( (unsigned int) argv[1][2] - '0') <= 5) && (( (unsigned int) argv[1][3] - '0') <= 3) && (( (unsigned int) argv[1][4] - '0') <= 5) )
-    )
-    )
+            )
+            )
             )
     {
-
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 16);
-
-        // prompt a message with the number given and which binary format it will apply
-        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (16 bits)");
-
     }
 
         // else if
@@ -166,16 +153,14 @@ int main(int argc, char *argv[]){
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') <= 2) && (( (unsigned int) argv[1][2] - '0') <= 9) && (( (unsigned int) argv[1][3] - '0') <= 4) && (( (unsigned int) argv[1][4] - '0') <= 9) && (( (unsigned int) argv[1][5] - '0') <= 6) && (( (unsigned int) argv[1][6] - '0') <= 7) && (( (unsigned int) argv[1][7] - '0') < 2) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') <= 2) && (( (unsigned int) argv[1][2] - '0') <= 9) && (( (unsigned int) argv[1][3] - '0') <= 4) && (( (unsigned int) argv[1][4] - '0') <= 9) && (( (unsigned int) argv[1][5] - '0') <= 6) && (( (unsigned int) argv[1][6] - '0') <= 7) && (( (unsigned int) argv[1][7] - '0') <= 2) && (( (unsigned int) argv[1][8] - '0') < 9) ) ||
             ( (( (unsigned int) argv[1][0] - '0') <= 4) && (( (unsigned int) argv[1][1] - '0') <= 2) && (( (unsigned int) argv[1][2] - '0') <= 9) && (( (unsigned int) argv[1][3] - '0') <= 4) && (( (unsigned int) argv[1][4] - '0') <= 9) && (( (unsigned int) argv[1][5] - '0') <= 6) && (( (unsigned int) argv[1][6] - '0') <= 7) && (( (unsigned int) argv[1][7] - '0') <= 2) && (( (unsigned int) argv[1][8] - '0') <= 9) && (( (unsigned int) argv[1][9] - '0') <= 5)  )
-    )
-    )
+            )
+            )
             )
     {
 
         // use decimalToBinary helper method to convert to the desired binary format (8 bits) from the given number
         decimalToBinary((char **) argv[1], 32);
 
-        // prompt a message with the number given and which binary format it will apply
-        printf("\n%s%s %s\n", " is this number ( ", argv[1], ")'s binary value (32 bits)");
     }
 
         // if not any case of the previous ones then the number is higher than the allowed value which we won't accept and return 2 with error message
@@ -184,6 +169,7 @@ int main(int argc, char *argv[]){
         // if the value of the number is higher or less than unsigned long typ (from 0 to 4294 967 295) then
         // prompt a conversion failure message and guide to run the help command.
         printf("%s\n", conversion_failure);
+        printf("%s\n", "The number must be between 0 - 4294 967 295");
 
         // failure, return 2 and exit the program.
         return 2;
@@ -193,7 +179,6 @@ int main(int argc, char *argv[]){
     // return 0 if successful and exit the program
     return 0;
 }
-
 
 
 /**
@@ -222,7 +207,8 @@ void decimalToBinary(char* toConvert [], int bits)
         else
         {
             // shifting the bits
-            printf("%lu\n", (strtol(( char *) toConvert, NULL, 10) >> i & 1));
+            printf("%lu", (strtol(( char *) toConvert, NULL, 10) >> i & 1));
         }
     }
+    printf("%s", "\n");
 }
