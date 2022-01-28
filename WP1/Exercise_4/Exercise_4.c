@@ -1,7 +1,9 @@
 // (C) Bassam Group: 23 (2022)
 // Work package 1
 // Exercise 4 part 1 (Decimal to Binary convertor)
-// Submission code: TODO :: MAke sure that the program shal be running on wondows with the pipleline commands
+// Submission code: aB-5311 
+
+// TODO :: MAke sure that the program shal be running on wondows with the pipleline commands
 //TODO: complete the help documentation and maybe compile the executable files for windows.
 // run in a pipeline on MAC >> ./file | xargs ./nextfile
 // with spaces and \ to avoid ./main | tr "\n" "\0" | xargs -0 ./file on macos.
