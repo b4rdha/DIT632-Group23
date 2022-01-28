@@ -1,7 +1,8 @@
 // (C) Bassam Group: 23 (2022)
 // Work package 1
 // Exercise 4 part 2 (Binary to Hexadecimal convertor)
-// Submission code: TODO
+// Submission code: aB-5311
+
 // TODO: ask if we need to check if the binary value is higher than long type value!!
 // TODO: This program shall run in a pipeline that means we can't disallow any type of argument or the number of arguments
 // TODO: but we need to ask the
@@ -88,7 +89,7 @@ int main(int argc, char* argv[]){
 
     // a char array to hold the binary values given
     // this is made for the reason in case the file will be running in a pipeline
-     char bin_values [length];
+     char bin_values [32];
 
 
     // loop over the given argument

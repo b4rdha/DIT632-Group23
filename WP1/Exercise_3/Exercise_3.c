@@ -1,16 +1,13 @@
 // (C) Ediz -> Group: 23 (2022)
 // Work package 1
 // Exercise 3
-// Submission code: ------
+// Submission code: aB-5311
 
 /*------------------------------------------------------------
 References:
     - C programming (course literature)
     - https://www.javatpoint.com/random-function-in-c
-    - https://www.programiz.com/c-programming/c-input-output#:~:text=In%20C%20programming%2C%20scanf(),standard%20input%20such%20as%20keyboards
-    - https://www.techonthenet.com/c_language/standard_library_functions/stdlib_h/exit.php
     - https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/
-    - https://stackoverflow.com/questions/4072190/check-if-input-is-integer-type-in-c
     - https://www.tutorialspoint.com/c_standard_library/c_function_getchar.htm
 --------------------------------------------------------------*/
 
