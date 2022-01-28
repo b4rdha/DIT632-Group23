@@ -1,4 +1,4 @@
-// (C) Ediz,         ,        -> Group: 23 (2022)
+// (C) Ediz, Bassam, Bardha -> Group: 23 (2022)
 // Work package 1
 // Exercise 5
 // Submission code: ------
@@ -6,14 +6,14 @@
 /*------------------------------------------------------------
 References:
  - https://stackoverflow.com/questions/18930908/c-printing-a-histogram
-*------------------------------------------------------------
+
+--------------------------------------------------------------
 Exercise 5
 
 The system is generating 100 random numbers between 0 to 20 and 
 printing out the fequency of those numbers which is generated through 
 histogram. 
-
-//--------------------------------------------------------------*/
+-------------------------------------------------------------*/
 
 // Used library headers
 #include <stdio.h>
@@ -42,8 +42,7 @@ int draw_histogram(int *freq);
 /**
 * The function create the random numbers and store them in *tab.
 * The function takes only a param as below;
-* @param *tab - array of random numbers numbers.
-*/
+* @param *tab - array of random numbers numbers.*/
 int create_random(int *tab)
 {
 
@@ -72,9 +71,7 @@ int create_random(int *tab)
 * and stores the number of the appearance of each number in the tab array
 * The function takes as an input 2 params
 * @param *tab - array of random numbers numbers.
-* @param *freq - where we store the counts for each number appearance in the tab array.
-*/
-
+* @param *freq - where we store the counts for each number appearance in the tab array.*/
 int count_frequency(int *tab, int *freq)
 {
 
@@ -106,14 +103,14 @@ int count_frequency(int *tab, int *freq)
 
     }
 
-    // print out the frequency array with index and each value
-    printf("\b%s\n", "Frequency array >>>>>>>");
+    // print out the frequency array with index and each value through looping
+    printf("\b%s\n", "\n\t<<<<<<<< Frequency array >>>>>>>\n");
     for ( int i = 0; i < MAXNUMBER; i++)
     {
         printf("%d- %s %d%s\n", i," occurred ", freq[i], " times.");
     }
 
-    //
+    // Successful termination
     return  0;
 }
 
@@ -122,9 +119,7 @@ int count_frequency(int *tab, int *freq)
 * Function takes the *freq  of counts of how many times a number has appeared in an array
 * This function will draw a histogram of the statistics the *freq holds.
 * The function takes as an input 1 params
-* @param *freq - array of counts of the appearance of numbers in an array.
-*/
-
+* @param *freq - array of counts of the appearance of numbers in an array.*/
 int draw_histogram(int *freq)
 {
 
@@ -132,7 +127,7 @@ int draw_histogram(int *freq)
     // the idea is adopted from https://stackoverflow.com/questions/18930908/c-printing-a-histogram
     printf("%s",  "\n\t >>>>>> A histogram for the frequency of each number in an array <<<<<<<\n\n");
 
-    // initial int i to hold the index value
+    // initial "int i" to hold the index value
     int i = 0;
         do
         {
@@ -170,15 +165,16 @@ int draw_histogram(int *freq)
 // Please modify it accordingly
 int main(void)
 {
-
+    // Declared arrays for the random numbers and their frequencies
     int table[MAX], n;
     int frequency[MAXNUMBER];
 
+    // Function calls with their related parameters.
     create_random(table);
     count_frequency(table, frequency);
     draw_histogram(frequency);
 
-
+    // Successfull termination
     return 0;
 }
 
