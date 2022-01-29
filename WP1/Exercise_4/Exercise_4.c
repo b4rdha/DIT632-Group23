@@ -42,9 +42,7 @@ static char help [] = "\nTo be able to run the program >>> \n- Type:  './<<name 
                       "a whitespace and \"<valid number between (0 - 4294 967 295)> \"the maximum value of "
                       "type unsigned long\"\n\tlook at this example\" [i.e.= \"./filename <number>\" ], "
                       "[on windows: \"filename.exe <number>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
-                      "\t./thisFileName <12> | xargs ./theOtherFileName";
-
-
+                      "\t./thisFileName <12> | xargs ./theOtherFileName [on windows: \"./thisFileName.exe 14 | xargs -0 ./theOtherFileName.exe\" ]";
 
 
 /**
@@ -210,5 +208,4 @@ void decimalToBinary(char* toConvert [], int bits)
             printf("%lu", (strtol(( char *) toConvert, NULL, 10) >> i & 1));
         }
     }
-    printf("%s", "\n");
 }
