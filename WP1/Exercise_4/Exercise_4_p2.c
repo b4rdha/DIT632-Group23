@@ -41,7 +41,7 @@ static char argument_failure [] = "\nYou might have not entered an argument or e
 static char help [] = "\nTo be able to run the program >>> \n- Type:  './<<name of your executable file>>', "
                       "a whitespace and \"<binary number>\"""\n\tlook at this example\" [i.e.= \"./filename <00001111>\" ], "
                       "[on windows: \"filename.exe <00001111>\" ]\n- If you wish to run this program in the pipeline then you should use the following command instead:\n"
-                      "\t./thisFileName <00001111> | xargs ./theOtherFileName\n";
+                      "\t./thisFileName <00001111> | xargs ./theOtherFileName [on windows: \"./thisFileName.exe 14 | xargs -0 ./theOtherFileName.exe\" ]\n ";
 
 
 

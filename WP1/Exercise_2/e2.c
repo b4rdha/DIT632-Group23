@@ -1,7 +1,7 @@
 // (C) Bardha -> Group: 23 (2022)
 // Work package 1
 // Exercise 2
-// Submission code: aB-5311
+// Submission code: ------
 
 /*------------------------------------------------------------
 References:
@@ -12,7 +12,7 @@ References:
 EXERCISE 2
 The system encrypts messages that are inputted by the user
  via console. To do so, it requires as input the message as well
- as the encryption key (i.e. the shift step). 
+ as the encryption key (i.e. the shift step).
 --------------------------------------------------------------*/
 #include<stdio.h>
 
@@ -31,12 +31,11 @@ int main()
     do{
         printf("Enter the message you want to encrypt: \n");
         //get message from user
-        //scanf("%s", &message)
-        fgets (message, 100, stdin);
+        scanf(" %[^\n]", &message);
 
         //get encryption key from the user
         printf("Enter the encryption key (shift): \n");
-        scanf("%d", &shift);
+        scanf(" %d", &shift);
 
         /*read through each character in message
           for each of them provide a new encrypted value
@@ -57,6 +56,9 @@ int main()
             }
             else if (ch==' '){
                 message[i]=' ';
+            }
+            else{
+                return -1;
             }
         }
         printf("Your encrypted message is: %s \n", message, "\n");
