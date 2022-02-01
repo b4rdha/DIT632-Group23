@@ -8,8 +8,6 @@ void set_bits (u_int8_t* old_bits, int new_bits, int n_shifts);
 void pack_arg_bits(u_int8_t* packed_bits_ptr, char** argv);
 int binaryToHec(const u_int8_t* packed_bits_ptr);
 
-//// SIGSEGV error when not entering args >> to be fixed
-
 
 
 // global variables
@@ -53,7 +51,7 @@ int main(int argc, char**argv){
 
         if (atoi(argv[1]) < 0 || atoi(argv[1]) > 1 || !isdigit(argv[1][0]))
         {
-            printf("%s, \n%s\n", argument_failure, "Your first argument must be between 0 and 1"); // the first args must be between 0 and 1
+            printf("%s, \n%s\n", argument_failure, "Your first argument must be between 0 and 1");
             return 2;
         }
         else if (atoi(argv[2]) < 0 || atoi(argv[2]) > 7 || !isdigit(argv[2][0]))
