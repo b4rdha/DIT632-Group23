@@ -9,3 +9,7 @@ add_executable(WP1-ex3 WP1/Exercise_3/Exercise_3.c)
 add_executable(WP1-ex4_dec2bin WP1/Exercise_4/Exercise_4.c)
 add_executable(WP1-ex4_bin2hex WP1/Exercise_4/Exercise_4_p2.c)
 add_executable(WP1-ex5 WP1/Exercise_5/Exercise_5.c)
+
+
+add_executable(WP2-ex4_code WP2/Exercise_4/code.c)
+add_executable(WP2-ex4_decode WP2/Exercise_4/decode.c)
