@@ -124,18 +124,6 @@ void unpack_bits(u_int8_t* packed_bits_ptr)
 
 }
 
-/*
-int hexToBin(u_int8_t* packed_bits_ptr) {
-    // print out the long value x as a lX hexadecimal value using strol method.
-    // passing the bits_group array
-
-    printf("%hhX\n", *packed_bits_ptr);
-
-    //printf("\n%s\n", " is the hexadecimal value for the number you have entered");
-    return 0;
-}
- */
-
 
 // adopted from https://www.geeksforgeeks.org/program-for-hexadecimal-to-decimal/?ref=gcse
 u_int8_t hexadecimalToDecimal(const char* hexadecimal_values)
