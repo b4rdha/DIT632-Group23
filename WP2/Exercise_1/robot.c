@@ -34,6 +34,8 @@ int main ()
     int x = 0;
     int y = 0;
 
+    // TODO: we need to check the number is a number not a sign or int
+    // TODO: The number must be between 0 and 99
 
     printf("%s", "Please enter the starting coordinate x");
     scanf("%d", &x); // parse to int 0-99
@@ -53,12 +55,18 @@ int main ()
 
     printf("%d %d %d\n", my_robot.x_position, my_robot.y_position, my_robot.dir);
 
+
+    // TODO: we need to check the string comtains just chars and not sign or ints
+    // TODO: The chars must be handled so that they work with uppercase or lowercase.
+
     printf("%s", "Please enter instructions for the robot");
 
     scanf("%s", instruction);
 
 
     for (int i = 0; i < 50; ++i) {
+
+        // TODO write info to the user that they can exit the program if the enter this sign '/'
         if(instruction[i] != '/')
         {
             // handel the instructions
@@ -68,7 +76,7 @@ int main ()
         else
         {
             // so if the char '/' is seen then exit the program
-            return 2;
+            return 0;
         }
     }
 
@@ -77,7 +85,7 @@ int main ()
 }
 
 void turn (ROBOT* robot, char c)
-{
+    //TODO: change this to be dynamically incremented
     if (c == 't' && robot->dir == 0 )
     {
         robot->dir = 1; //robot->dir+1 % 3;  /// 1 % 3 = 1
