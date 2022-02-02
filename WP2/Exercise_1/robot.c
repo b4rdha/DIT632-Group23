@@ -31,14 +31,14 @@ int main ()
     // start direction is always north
     my_robot.dir = N;
 
-    int x = 0;
-    int y = 0;
-
-    // TODO: we need to check the number is a number not a sign or int
-    // TODO: The number must be between 0 and 99
-
+//    int x = 0;
+//    int y = 0;
+//
+//    // TODO: we need to check the number is a number not a sign or int
+//    // TODO: The number must be between 0 and 99
+//
     printf("%s", "Please enter the starting coordinate x");
-    scanf("%d", &x); // parse to int 0-99
+    scanf("%d", &rob_ptr->x_position); // parse to int 0-99
 //
 //    if (x < 0 || x > 99 || !isdigit(x))
 //    {
@@ -64,19 +64,20 @@ int main ()
     scanf("%s", instruction);
 
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < strlen(instruction); ++i) {
 
         // TODO write info to the user that they can exit the program if the enter this sign '/'
-        if(instruction[i] != '/')
+        if(instruction[i] == 't')
         {
             // handel the instructions
             turn (rob_ptr, instruction[i]);
-            move(rob_ptr, instruction[i]);
+
         }
         else
         {
+            move(rob_ptr, instruction[i]);
             // so if the char '/' is seen then exit the program
-            return 0;
+            //return 0;
         }
     }
 
@@ -85,20 +86,21 @@ int main ()
 }
 
 void turn (ROBOT* robot, char c)
+{
     //TODO: change this to be dynamically incremented
-    if (c == 't' && robot->dir == 0 )
+    if ( robot->dir == 0 )
     {
         robot->dir = 1; //robot->dir+1 % 3;  /// 1 % 3 = 1
     }
-    else if (c == 't' && robot->dir == 1 )
+    else if (robot->dir == 1 )
     {
         robot->dir = 2; //robot->dir+1 % 3;  /// 1 % 3 = 1
     }
-    else if (c == 't' && robot->dir == 2 )
+    else if (robot->dir == 2 )
     {
         robot->dir = 3; //robot->dir+1 % 3;  /// 1 % 3 = 1
     }
-    else if (c == 't' && robot->dir == 3 )
+    else if ( robot->dir == 3 )
     {
         robot->dir = 0; //robot->dir+1 % 3;  /// 1 % 3 = 1
     }
@@ -106,19 +108,19 @@ void turn (ROBOT* robot, char c)
 
 void move (ROBOT* robot, char c)
 {
-    if (c == 'm' && robot->dir == 0)
+    if (robot->dir == 0)
     {
         robot->y_position++;
     }
-    else if (c == 'm' && robot->dir == 1)
+    else if ( robot->dir == 1)
     {
         robot->x_position++;
     }
-    else if (c == 'm' && robot->dir == 2)
+    else if (robot->dir == 2)
     {
         robot->y_position--;
     }
-    else if (c == 'm' && robot->dir == 3)
+    else if (robot->dir == 3)
     {
         robot->x_position--;
     }
