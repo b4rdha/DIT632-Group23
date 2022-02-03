@@ -60,6 +60,7 @@ int main()
 
     printf("%s", "Please enter the starting coordinate y = ");
     rob_ptr->y_position = getint();
+    printf("\nInitial position: \nX:%d, Y:%d, Direction:%d\n", my_robot.x_position, my_robot.y_position, my_robot.dir);
 
     // TODO: we need to check the string comtains just chars and not sign or ints
     // TODO: The chars must be handled so that they work with uppercase or lowercase.
@@ -85,7 +86,6 @@ int main()
         }
     }
 
-    printf("\nInitial position: \nX:%d, Y:%d, Direction:%d\n", my_robot.x_position, my_robot.y_position, my_robot.dir);
     printf("\nFinal position after command '%s': \nX:%d, Y:%d, Direction:%d\n", instruction, my_robot.x_position, my_robot.y_position, my_robot.dir);
 
     choice();
@@ -138,17 +138,18 @@ void move(ROBOT *robot, char c)
 int getint()
 {
     int integer;     // To keep integer values
-    char string[10]; // To keep char values
+    int string[10]; // To keep char values
+    int index = 0;
 
     // scanf("format", argument) function to read the input data from the console.
     while (scanf("%d", &integer) != 1)
     {
         // Keep read characters in char array up to 10
-        string[10] = getchar(); // getchar() reads characters from input and returns them.
+        string[index] = getchar(); // getchar() reads characters from input and returns them.
 
         // Printing out a string to the console for user alert
         printf("You have not typed an integer! Please try again! = ", string);
-
+        index++;
         // Filling the buffer until the next new line
         while (getchar() != '\n')
             ;
@@ -173,13 +174,13 @@ int choice()
         main();
     }
 
-    // otherwise end the program.
+    // otherwise, end the program.
     else
     {
         // Printing out a string to the console for farewell.
         printf("\n Exiting the program...\n");
     }
 
-    // Succesfull termination same as '#0'.
+    // Successful termination same as '#0'.
     return EXIT_SUCCESS;
 }
