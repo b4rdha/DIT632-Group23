@@ -21,8 +21,9 @@ typedef struct
 
 void turn(ROBOT *robot, char c);
 void move(ROBOT *robot, char c);
-int getint();
-int choice();
+u_int8_t get_coordinates ( u_int8_t x_or_y);
+void get_instructions (ROBOT* rob_ptr);
+int choice(ROBOT* rob_ptr);
 
 char instruction[50];
 
@@ -38,57 +39,7 @@ int main()
     // start direction is always north
     my_robot.dir = N;
 
-    //    int x = 0;
-    //    int y = 0;
-    //
-    //    // TODO: we need to check the number is a number not a sign or int -> DONE
-    //    // TODO: The number must be between 0 and 99
-    //
-    printf("%s", "Please enter the starting coordinate x = ");
-    rob_ptr->x_position = getint();
-
-    //
-    //    if (x < 0 || x > 99 || !isdigit(x))
-    //    {
-    //        // failure message
-    //        printf("%s", "The x value must be between 0 and 99");
-    //    }
-    //    if ( y < 0 || y > 99 || !isdigit(x))
-    //    {
-    //        printf("%s", "The y value must be between 0 and 99");
-    //    }
-
-    printf("%s", "Please enter the starting coordinate y = ");
-    rob_ptr->y_position = getint();
-    printf("\nInitial position: \nX:%d, Y:%d, Direction:%d\n", my_robot.x_position, my_robot.y_position, my_robot.dir);
-
-    // TODO: we need to check the string comtains just chars and not sign or ints
-    // TODO: The chars must be handled so that they work with uppercase or lowercase.
-
-    printf("%s", "Please enter instructions for the robot ['m' for move forward, 't' for turning 90 degree clockwise] = ");
-
-    scanf("%s", instruction);
-
-    for (int i = 0; i < strlen(instruction); ++i)
-    {
-
-        // TODO write info to the user that they can exit the program if the enter this sign '/'
-        if (instruction[i] == 't')
-        {
-            // handel the instructions
-            turn(rob_ptr, instruction[i]);
-        }
-        else
-        {
-            move(rob_ptr, instruction[i]);
-            // so if the char '/' is seen then exit the program
-            // return 0;
-        }
-    }
-
-    printf("\nFinal position after command '%s': \nX:%d, Y:%d, Direction:%d\n", instruction, my_robot.x_position, my_robot.y_position, my_robot.dir);
-
-    choice();
+    choice(rob_ptr);
 
     return 0;
 }
@@ -134,53 +85,92 @@ void move(ROBOT *robot, char c)
     }
 }
 
-// Function that evaluates whether the user input is an integer.
-int getint()
-{
-    int integer;     // To keep integer values
-    int string[10]; // To keep char values
-    int index = 0;
 
-    // scanf("format", argument) function to read the input data from the console.
-    while (scanf("%d", &integer) != 1)
-    {
-        // Keep read characters in char array up to 10
-        string[index] = getchar(); // getchar() reads characters from input and returns them.
-
-        // Printing out a string to the console for user alert
-        printf("You have not typed an integer! Please try again! = ", string);
-        index++;
-        // Filling the buffer until the next new line
-        while (getchar() != '\n')
-            ;
-    }
-
-    // Return the correct value to main
-    return integer;
-}
-
-int choice()
+int choice(ROBOT* rob_ptr)
 {
     // Declared variable for the user input.
     char yn;
 
-    // Printing out a string to the console for user input.
-    printf("Would you like to execute another command case (Y/N)? = ");
+    do {
+        rob_ptr->x_position = get_coordinates(0);
 
-    // Comparison of char with case-sensitiveness through scanf("format", argument) function to read the input data from the console,
-    if (scanf(" %c", &yn) == 1 && (yn == 'y' || yn == 'Y'))
-    {
-        // Re-calling the main function
-        main();
-    }
+        rob_ptr->y_position = get_coordinates(1);
 
-    // otherwise, end the program.
-    else
-    {
-        // Printing out a string to the console for farewell.
-        printf("\n Exiting the program...\n");
-    }
+        printf("\nInitial position: \nX:%d, Y:%d, Direction:%d\n", rob_ptr->x_position, rob_ptr->y_position, rob_ptr->dir);
+
+        get_instructions(rob_ptr);
+
+        printf("\nFinal position after command '%s': \nX:%d, Y:%d, Direction:%d\n", instruction, rob_ptr->x_position,rob_ptr->y_position, rob_ptr->dir);
+
+        // Printing out a string to the console for user input.
+        printf("Would you like to execute another command case (Y/N)? = ");
+
+    }while(scanf(" %c", &yn) == 1 && (yn == 'y' || yn == 'Y'));
 
     // Successful termination same as '#0'.
     return EXIT_SUCCESS;
+}
+
+u_int8_t get_coordinates (u_int8_t x_or_y)
+{
+    char numbers[3];
+    u_int8_t coordinate;
+    u_int8_t true_false = 0;
+
+    do {
+        if (x_or_y == 0)
+        {
+            printf("%s", "Please enter the starting coordinate x = ");
+        }
+        else
+        {
+            printf("%s", "Please enter the starting coordinate y = ");
+        }
+
+        scanf("%s", numbers);
+
+        if (!isalpha(numbers[0]) && !isalpha(numbers[1])){
+            coordinate = strtol(numbers,NULL,10);
+            if ( coordinate >= 0 && coordinate <= 99)
+            {
+                true_false = 1;
+            }
+            else
+            {
+                true_false = 0;
+            }
+        }
+    } while (true_false == 0);
+
+    return coordinate;
+
+}
+
+
+void get_instructions (ROBOT* rob_ptr)
+{
+    printf("%s", "Please enter instructions for the robot ['m' for move forward, 't' for turning 90 degree clockwise] = ");
+
+    scanf("%s", instruction);
+
+    for (int i = 0; i < strlen(instruction); ++i)
+    {
+
+        // TODO write info to the user that they can exit the program if the enter this sign '/'
+        if (instruction[i] == 't')
+        {
+            // handel the instructions
+            turn(rob_ptr, instruction[i]);
+        }
+        else if (instruction[i] == 'm')
+        {
+            move(rob_ptr, instruction[i]);
+        }
+        else
+        {
+            //printf("%s", "Error >>>> Please enter instructions for the robot ['m' for move forward, 't' for turning 90 degree clockwise] = ");
+            get_instructions (rob_ptr);
+        }
+    }
+
 }
