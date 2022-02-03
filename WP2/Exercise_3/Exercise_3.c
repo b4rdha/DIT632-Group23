@@ -30,7 +30,7 @@ int main(void)
     PERSON ppost;
     FILE *fileptr;
 
-    int option;
+    char option[1];
     //Provide menu with options
     do
     {
@@ -41,9 +41,9 @@ int main(void)
         printf("4 Print out all in the file.\n");
         printf("5 Exit the program.\n");
 
-        scanf(" %d", &option);
+        scanf("%1s", &option);
 
-        if(option == 1) //go through user choices 
+        if(strcmp(option, "1") == 0) //go through user choices 
         {
                 // create a new and delete the old file
                 // open file in binary write mode, if it doesn't exist, create it
@@ -61,7 +61,7 @@ int main(void)
                 fclose(fileptr);
 
         }
-        else if(option == 2) // Add a new person to the file.
+        else if(strcmp(option, "2") == 0) // Add a new person to the file.
         {
                
                 PERSON newPerson = {};
@@ -87,7 +87,7 @@ int main(void)
                 //close
                 fclose(fileptr); 
         }
-        else if(option == 3) //searching for a record
+        else if(strcmp(option, "3") == 0) //searching for a record
         {
                 char searchTerm[20]; 
                 //get search term from user via console
@@ -103,22 +103,24 @@ int main(void)
                 else
                 {   //check if the entered term matches any stored record and print it
                     PERSON temp;
+                    int recordsFound = 0;
                     while((fread(&temp,sizeof(PERSON),1,fileptr)==1))
                     {
                         if ((strcmp(temp.firstname,searchTerm) == 0) || strcmp(temp.famname,searchTerm) == 0)
                         {
+                            recordsFound++;
                             printf("Name: %s Lastname: %s  Personal Number: %s\n", temp.firstname,temp.famname,temp.pers_number);
                         }
-                        else
-                        //show if search didn't match any record 
-                        {
-                            printf("The person is not found in our records ");
-                        }
+                    }
+                    //if no records were found
+                    if(recordsFound==0)
+                    {
+                        printf("No persons matching the given name/lastname were found. \n");
                     }
                 }
                 fclose(fileptr);
         }
-        else if(option == 4) //Show all records 
+        else if(strcmp(option, "4") == 0) //Show all records 
         {       
                 //access file
                 if((fileptr=fopen("Database.dat","rb"))==NULL)
@@ -137,9 +139,13 @@ int main(void)
                 }
                 fclose(fileptr);
         }
-        else if(option == 5) //option to exit the program 
+        else if(strcmp(option, "5") == 0) //option to exit the program 
         {
             return 0;
+        }
+        else
+        {
+            printf("Please provide a valid input from 1-5");
         }
 
     } while (1);
