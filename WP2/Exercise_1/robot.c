@@ -19,7 +19,7 @@ typedef struct
     enum DIRECTION dir;
 } ROBOT;
 
-void turn(ROBOT *robot, char c);
+void turn(ROBOT *robot);
 void move(ROBOT *robot, char c);
 u_int8_t get_coordinates ( u_int8_t x_or_y);
 void get_instructions (ROBOT* rob_ptr);
@@ -44,24 +44,29 @@ int main()
     return 0;
 }
 
-void turn(ROBOT *robot, char c)
+void turn(ROBOT *robot)
 {
     // TODO: change this to be dynamically incremented
-    if (robot->dir == 0)
-    {
-        robot->dir = 1; // robot->dir+1 % 3;  /// 1 % 3 = 1
-    }
-    else if (robot->dir == 1)
-    {
-        robot->dir = 2; // robot->dir+1 % 3;  /// 1 % 3 = 1
-    }
-    else if (robot->dir == 2)
-    {
-        robot->dir = 3; // robot->dir+1 % 3;  /// 1 % 3 = 1
-    }
-    else if (robot->dir == 3)
-    {
-        robot->dir = 0; // robot->dir+1 % 3;  /// 1 % 3 = 1
+//    if (robot->dir == 0)
+//    {
+//        robot->dir = 1; // robot->dir+1 % 3;  /// 1 % 3 = 1
+//    }
+//    else if (robot->dir == 1)
+//    {
+//        robot->dir = 2; // robot->dir+1 % 3;  /// 1 % 3 = 1
+//    }
+//    else if (robot->dir == 2)
+//    {
+//        robot->dir = 3; // robot->dir+1 % 3;  /// 1 % 3 = 1
+//    }
+//    else if (robot->dir == 3)
+//    {
+//        robot->dir = 0; // robot->dir+1 % 3;  /// 1 % 3 = 1
+//    }
+
+    robot->dir++;
+    if (robot->dir == 4){
+        robot->dir = 0;
     }
 }
 
@@ -104,6 +109,11 @@ int choice(ROBOT* rob_ptr)
 
         // Printing out a string to the console for user input.
         printf("Would you like to execute another command case (Y/N)? = ");
+
+        // reset the robot settings
+        rob_ptr->x_position = 0;
+        rob_ptr->y_position = 0;
+        rob_ptr->dir = 0;
 
     }while(scanf(" %c", &yn) == 1 && (yn == 'y' || yn == 'Y'));
 
@@ -160,7 +170,7 @@ void get_instructions (ROBOT* rob_ptr)
         if (instruction[i] == 't')
         {
             // handel the instructions
-            turn(rob_ptr, instruction[i]);
+            turn(rob_ptr);
         }
         else if (instruction[i] == 'm')
         {
