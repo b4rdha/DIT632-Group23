@@ -94,7 +94,7 @@ int main(void)
                 char searchTerm[20]; 
                 //get search term from user via console
                 printf("Enter the name or lastname you want to search for:");
-                scanf(" %20s\n", &searchTerm);
+                scanf(" %20s\n", searchTerm);
                 
                 //access the file
                 if((fileptr=fopen("Database.dat","rb"))==NULL)
