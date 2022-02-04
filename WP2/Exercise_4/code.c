@@ -34,6 +34,7 @@ void pack_arg_bits(u_int8_t* packed_bits_ptr, char** argv);
 // Function which takes the packed or binary value to convert it to hexadecimal
 void binary_to_hex(const u_int8_t* packed_bits_ptr);
 
+// function that checks if each program argument is within it's limit.
 int check_limits (char** argv);
 
 
