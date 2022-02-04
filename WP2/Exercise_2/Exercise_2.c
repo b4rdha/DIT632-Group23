@@ -1,7 +1,7 @@
 // (C) Ediz -> Group: 23 (2022)
 // Work package 2
 // Exercise 2
-// Submission code: -----
+// Submission code: 101zX
 
 /*------------------------------------------------------------------------------
 References:
@@ -9,6 +9,7 @@ References:
     - https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 
 -------------------------------------------------------------------------------*/
+
 
 /*------------------------------------------------------------------------------
  - Random number generator into Linked List
