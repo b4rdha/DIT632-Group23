@@ -20,10 +20,11 @@ typedef struct
 } ROBOT;
 
 void turn(ROBOT *robot);
-void move(ROBOT *robot, char c);
-u_int8_t get_coordinates ( u_int8_t x_or_y);
+void move(ROBOT *robot);
+int get_coordinates ( int x_or_y);
 void get_instructions (ROBOT* rob_ptr);
-int choice(ROBOT* rob_ptr);
+int repeat(ROBOT* rob_ptr);
+void print_direction (ROBOT* robot);
 
 char instruction[50];
 
@@ -39,38 +40,20 @@ int main()
     // start direction is always north
     my_robot.dir = N;
 
-    choice(rob_ptr);
+    repeat(rob_ptr);
 
     return 0;
 }
 
 void turn(ROBOT *robot)
 {
-    // TODO: change this to be dynamically incremented
-//    if (robot->dir == 0)
-//    {
-//        robot->dir = 1; // robot->dir+1 % 3;  /// 1 % 3 = 1
-//    }
-//    else if (robot->dir == 1)
-//    {
-//        robot->dir = 2; // robot->dir+1 % 3;  /// 1 % 3 = 1
-//    }
-//    else if (robot->dir == 2)
-//    {
-//        robot->dir = 3; // robot->dir+1 % 3;  /// 1 % 3 = 1
-//    }
-//    else if (robot->dir == 3)
-//    {
-//        robot->dir = 0; // robot->dir+1 % 3;  /// 1 % 3 = 1
-//    }
-
     robot->dir++;
     if (robot->dir == 4){
         robot->dir = 0;
     }
 }
 
-void move(ROBOT *robot, char c)
+void move(ROBOT *robot)
 {
     if (robot->dir == 0)
     {
@@ -91,7 +74,7 @@ void move(ROBOT *robot, char c)
 }
 
 
-int choice(ROBOT* rob_ptr)
+int repeat(ROBOT* rob_ptr)
 {
     // Declared variable for the user input.
     char yn;
@@ -105,7 +88,7 @@ int choice(ROBOT* rob_ptr)
 
         get_instructions(rob_ptr);
 
-        printf("\nFinal position after command '%s': \nX:%d, Y:%d, Direction:%d\n", instruction, rob_ptr->x_position,rob_ptr->y_position, rob_ptr->dir);
+        print_direction (rob_ptr);
 
         // Printing out a string to the console for user input.
         printf("Would you like to execute another command case (Y/N)? = ");
@@ -121,14 +104,13 @@ int choice(ROBOT* rob_ptr)
     return EXIT_SUCCESS;
 }
 
-u_int8_t get_coordinates (u_int8_t x_or_y)
+int get_coordinates (int x_or_y)
 {
     char numbers[3];
-    u_int8_t coordinate;
-    u_int8_t true_false = 0;
+    u_int8_t coordinate = 0;
+    int option = x_or_y;
 
-    do {
-        if (x_or_y == 0)
+        if (option == 0)
         {
             printf("%s", "Please enter the starting coordinate x = ");
         }
@@ -139,18 +121,22 @@ u_int8_t get_coordinates (u_int8_t x_or_y)
 
         scanf("%s", numbers);
 
-        if (!isalpha(numbers[0]) && !isalpha(numbers[1])){
+        u_int8_t length = strlen(numbers);
+
+        if (!isalpha(numbers[0]) && !isalpha(numbers[1]) && length < 3){
+
             coordinate = strtol(numbers,NULL,10);
+
             if ( coordinate >= 0 && coordinate <= 99)
             {
-                true_false = 1;
-            }
-            else
-            {
-                true_false = 0;
+                return coordinate;
             }
         }
-    } while (true_false == 0);
+        else
+        {
+            coordinate = 0;
+            get_coordinates(option);
+        }
 
     return coordinate;
 
@@ -165,8 +151,6 @@ void get_instructions (ROBOT* rob_ptr)
 
     for (int i = 0; i < strlen(instruction); ++i)
     {
-
-        // TODO write info to the user that they can exit the program if the enter this sign '/'
         if (instruction[i] == 't')
         {
             // handel the instructions
@@ -174,13 +158,34 @@ void get_instructions (ROBOT* rob_ptr)
         }
         else if (instruction[i] == 'm')
         {
-            move(rob_ptr, instruction[i]);
+            move(rob_ptr);
         }
         else
         {
-            //printf("%s", "Error >>>> Please enter instructions for the robot ['m' for move forward, 't' for turning 90 degree clockwise] = ");
+            printf("%s", "Error >>>> ");
             get_instructions (rob_ptr);
         }
     }
 
+}
+
+void print_direction (ROBOT* robot)
+{
+    printf("\nFinal position after command '%s': \nX:%d, Y:%d", instruction, robot->x_position,robot->y_position);
+    if (robot->dir == 0)
+    {
+        printf("%s\n" , " Direction is North");
+    }
+    if (robot->dir == 1)
+    {
+        printf("%s\n" , " Direction is East");
+    }
+    if (robot->dir == 2)
+    {
+        printf("%s\n" , " Direction is South");
+    }
+    if (robot->dir == 3)
+    {
+        printf("%s\n" , " Direction is West");
+    }
 }
