@@ -1,7 +1,7 @@
 // (C) Bardha -> Group: 23 (2022)
 // Work package 2
 // Exercise 3
-// Submission code: ------
+// Submission code: 101zX!
 
 /*------------------------------------------------------------
 References:
@@ -10,8 +10,10 @@ References:
 
 /*------------------------------------------------------------
 EXERCISE 3
-The system allows uesers to create, read and update a file. 
-The file can also be searched by term. 
+The system allows uesers to create, read and update a file, 
+which is stored in binary form. 
+The file can also be searched by term. To navigate, a menu is 
+printed and user must select options from 1 to 5. 
 --------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
