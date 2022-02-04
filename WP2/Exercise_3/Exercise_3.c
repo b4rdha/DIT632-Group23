@@ -32,7 +32,7 @@ int main(void)
     PERSON ppost;
     FILE *fileptr;
 
-    char option[1];
+    char option[2];
     //Provide menu with options
     do
     {
@@ -43,9 +43,9 @@ int main(void)
         printf("4 Print out all in the file.\n");
         printf("5 Exit the program.\n");
 
-        scanf("%1s", &option);
+        scanf(" %20s\n", &option);
 
-        if(strcmp(option, "1") == 0) //go through user choices 
+        if(strcmp(option, "1") == 0 ) //go through user choices 
         {
                 // create a new and delete the old file
                 // open file in binary write mode, if it doesn't exist, create it
@@ -63,21 +63,21 @@ int main(void)
                 fclose(fileptr);
 
         }
-        else if(strcmp(option, "2") == 0) // Add a new person to the file.
+        else if(strcmp(option, "2") == 0 ) // Add a new person to the file.
         {
                
                 PERSON newPerson = {};
                 //allow user to enter new data through console
                 printf("Write first name: ");
-                scanf("%s", newPerson.firstname);
+                scanf(" %s\n", newPerson.firstname);
                 printf("\n");
 
                 printf("Write last name: ");
-                scanf("%s", newPerson.famname);
+                scanf(" %s", newPerson.famname);
                 printf("\n");
 
                 printf("Write personal number: ");
-                scanf("%s", newPerson.pers_number);
+                scanf(" %s\n", newPerson.pers_number);
                 printf("\n");
 
                 //show the newly added user
@@ -94,7 +94,7 @@ int main(void)
                 char searchTerm[20]; 
                 //get search term from user via console
                 printf("Enter the name or lastname you want to search for:");
-                scanf("%20s", &searchTerm);
+                scanf(" %20s\n", &searchTerm);
                 
                 //access the file
                 if((fileptr=fopen("Database.dat","rb"))==NULL)
