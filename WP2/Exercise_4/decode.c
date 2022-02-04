@@ -108,7 +108,7 @@ int main (int argc, char** argv){
                 )
         {
             // print out a failure message to the user
-            printf("%s, \n%s\n", argument_failure, "Here too");
+            printf("%s, \n%s\n", argument_failure, "the values you have entered are not hexadecimal values");
             // return -1 and exit the program
             return -1;
         }
