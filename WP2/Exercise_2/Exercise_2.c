@@ -10,6 +10,7 @@ References:
 
 -------------------------------------------------------------------------------*/
 
+
 /*------------------------------------------------------------------------------
  - Random number generator into Linked List
  - Adding the new value in the front of the linked list.
