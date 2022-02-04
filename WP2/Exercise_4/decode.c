@@ -27,9 +27,9 @@ References:
 
 
 // definitions
-#define f_bit 1
-#define f_2_bits 3
-#define f_3_bits 7
+#define f_bit 1     // to be able to mask the bits with the first bit to check if it's filled "1s".
+#define f_2_bits 3  // to be able to mask the bits with the first 2 bits to check if any of them filled "1".
+#define f_3_bits 7  // to be able to mask the bits with the first 3 bits to check if any of them filled "1".
 
 
 // enums for bits values
@@ -198,13 +198,11 @@ void unpack_bits(u_int8_t* packed_bits_ptr)
  */
 u_int8_t hexadecimalToDecimal(const char* hexadecimal_values)
 {
-    // initialise the base to 1
-    int base = 1;
-    // initialise the decimal value to 0
-    u_int8_t decimal_value = 0;
 
-    // loop for the given hexadecimal argument
-    for (int i = 1 ; i >= 0; i--) {
+    int base = 1; // initialise the base to 1
+    u_int8_t decimal_value = 0; // initialise the decimal value to 0
+
+    for (int i = 1 ; i >= 0; i--) {// loop for the given hexadecimal argument
 
         // check if each given char is within the hexadecimal values.
         if (hexadecimal_values[i] >= '0' && hexadecimal_values[i] <= '9') {
@@ -213,18 +211,15 @@ u_int8_t hexadecimalToDecimal(const char* hexadecimal_values)
             // assign it to the decimal value
             decimal_value = decimal_value + ((int)hexadecimal_values[i] - 48) * base;
 
-            // multiply the base with 16 as each decimal value is base 16
-            base = base * 16;
+            base = base * 16; // multiply the base with 16 as each decimal value is base 16
         }
 
         // if the value within A and F then we need to extract the integer from the char subtracting -55
         else if (hexadecimal_values[i] >= 'A' && hexadecimal_values[i] <= 'F') {
 
-            // assign it to the decimal value
-            decimal_value = decimal_value + ((int)hexadecimal_values[i] - 55) * base;
+            decimal_value = decimal_value + ((int)hexadecimal_values[i] - 55) * base; // assign it to the decimal value
 
-            // multiply the base with 16 as each decimal value is base 16
-            base = base * 16;
+            base = base * 16; // multiply the base with 16 as each decimal value is base 16
         }
     }
 
