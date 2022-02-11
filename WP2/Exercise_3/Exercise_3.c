@@ -32,7 +32,11 @@ int main(void)
     PERSON ppost;
     FILE *fileptr;
 
+    wp3
+    // char option;
+
     char option[2];
+    main
     //Provide menu with options
     do
     {
@@ -43,9 +47,17 @@ int main(void)
         printf("4 Print out all in the file.\n");
         printf("5 Exit the program.\n");
 
+        wp3
+        // scanf("%20c", &option);
+
+        // int lenght = strlen(option);
+
+        if(option == '1') //go through user choices 
+
         scanf(" %20s\n", &option);
 
         if(strcmp(option, "1") == 0 ) //go through user choices 
+        main
         {
                 // create a new and delete the old file
                 // open file in binary write mode, if it doesn't exist, create it
@@ -63,10 +75,14 @@ int main(void)
                 fclose(fileptr);
 
         }
+        wp3
+        // else if(option == '2') // Add a new person to the file.
+
         else if(strcmp(option, "2") == 0 ) // Add a new person to the file.
+        main
         {
                
-                PERSON newPerson = {};
+                PERSON newPerson;
                 //allow user to enter new data through console
                 printf("Write first name: ");
                 scanf(" %s\n", newPerson.firstname);
@@ -89,7 +105,7 @@ int main(void)
                 //close
                 fclose(fileptr); 
         }
-        else if(strcmp(option, "3") == 0) //searching for a record
+        else if(option == '3') //searching for a record
         {
                 char searchTerm[20]; 
                 //get search term from user via console
@@ -122,7 +138,7 @@ int main(void)
                 }
                 fclose(fileptr);
         }
-        else if(strcmp(option, "4") == 0) //Show all records 
+        else if(option == '4') //Show all records 
         {       
                 //access file
                 if((fileptr=fopen("Database.dat","rb"))==NULL)
@@ -141,13 +157,13 @@ int main(void)
                 }
                 fclose(fileptr);
         }
-        else if(strcmp(option, "5") == 0) //option to exit the program 
+        else if(option == '5') //option to exit the program 
         {
             return 0;
         }
         else
         {
-            printf("Please provide a valid input from 1-5");
+            printf("%s\n", "Please provide a valid input from 1-5");
         }
 
     } while (1);
