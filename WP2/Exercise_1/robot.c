@@ -187,13 +187,13 @@ void get_instructions (ROBOT* rob_ptr)
         {
             // handel the instructions turning instruction by calling function turn();
             turn(rob_ptr);
-        }¨
+        }
         // if the char is m
         else if (instruction[i] == 'm')
         {
             // handle the instrcution moving by calling mfunction move();
             move(rob_ptr);
-        }¨
+        }
         //if none of these leters then print and error message and ask the user to enter valid instructions
         else
         {
